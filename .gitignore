@@ -1,1 +1,18 @@
+<<<<<<< HEAD
 .nide
+=======
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+pids
+logs
+results
+
+npm-debug.log
+>>>>>>> 658666b0bd49167ca2e014cd4e5dcee04e1a42b9
