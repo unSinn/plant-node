@@ -4,10 +4,10 @@
  */
 
 exports.index = function(req, res){
-    articleProvider.findAll( function(error,docs){
+    db.findAll( function(error,data){
         res.render('index.jade',  {
-            title: 'Blog',
-            articles: docs
+            title: 'Messdaten',
+            data: data
             }
         );
     });

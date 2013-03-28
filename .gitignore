@@ -13,6 +13,7 @@ lib-cov
 pids
 logs
 results
+node_modules
 
 npm-debug.log
 >>>>>>> 658666b0bd49167ca2e014cd4e5dcee04e1a42b9
