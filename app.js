@@ -3,7 +3,7 @@
  * Module dependencies.
  */
 
-db = require('./db.js');
+db = require('./dataProvider-mongo.js');
 var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
@@ -55,19 +55,17 @@ var serialPort = new serial.SerialPort("/dev/ttyUSB0", {
 });
   
 serialPort.on("open", function () {
-  console.log('open');
+  console.log('Serial Port open');
   serialPort.on('data', function(data) {
     try
     {
-        var j = JSON.parse(data);
-        var d = new Date();
-        j.timestamp = d;
-        console.log(d + j + data);
-        db.save(j);
+        d = JSON.parse(data);
+        d.timestamp = new Date();
+        db.save(d);
     }
     catch (ex)
     {
-        console.warn(ex);
+        console.warn("Error while parsing sensorData: "+data+" "+ex);
     }
   });  
 });

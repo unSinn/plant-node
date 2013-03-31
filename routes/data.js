@@ -3,7 +3,7 @@
  */
 
 exports.list = function(req, res){
-  db.findAll(function(error, data){
-      res.send(data);
-  });
-};
+      SensorData.find({name: /^b-temp/ }, {}, {limit: 5 }, function(err, sensordata){
+          res.send(sensordata);
+      }).limit(10);
+ };

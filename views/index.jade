@@ -1,11 +1,10 @@
 extends layout
-
 block content
   p Welcome to #{title}
-  #articles
-    - each d in data
-      div.article
-        div.created_at= d.timestamp
-        div.title 
-            a(href="/blog/"+d._id)!= d.name
-        div.body= d.value
+  #sensors
+    - each s in sensors
+      div.sensor
+        div.title= s.name
+        div.data(id=s.name+'_data')
+        script(type='text/javascript')
+          addData(#{s.name});

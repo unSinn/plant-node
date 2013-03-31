@@ -2,14 +2,31 @@
 /*
  * GET home page.
  */
+ 
+sensors = [
+       {
+           "name": "b-temp",
+           "unit": "deg C"
+       },
+       {
+           "name": "b-pres",
+           "unit": "Pa"
+       },
+       {
+           "name": "b-rala",
+           "unit": "atm"
+       },
+       {
+           "name": "b-alti",
+           "unit": "m"
+       }
+   ];
+var sensorCount = 4;
 
 exports.index = function(req, res){
-    db.findAll( function(error,data){
-        res.render('index.jade',  {
-            title: 'Messdaten',
-            data: data
-            }
-        );
+    res.render('index.jade',  {
+        title: 'Messdaten',
+        sensors: sensors
     });
 };
 
