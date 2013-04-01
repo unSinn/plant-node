@@ -1,4 +1,38 @@
 
+sensors = [
+       {
+           "name": "b-temp",
+           "title": "Barometer Temperature",
+           "unit": "deg C"
+       },
+       {
+           "name": "b-pres",
+           "title": "Barometer Pressure",
+           "unit": "Pa"
+       },
+       {
+           "name": "b-rala",
+           "title": "Barometer Ralated Atmosphere",
+           "unit": "atm"
+       },
+       {
+           "name": "b-alti",
+           "title": "Barometer Altitude",
+           "unit": "m"
+       },
+       {
+           "name": "l-light",
+           "title": "Light Sensor",
+           "unit": "lux"
+       },
+       {
+           "name": "m-moisture",
+           "title": "Moisture Sensor",
+           "unit": "lux"
+       }
+   ];
+
+
 /**
  * Module dependencies.
  */
@@ -11,6 +45,9 @@ var data = require('./routes/data');
 var http = require('http');
 var path = require('path');
 var serial = require("serialport");
+url = require('url');
+
+
 
 var app = express();
 
@@ -24,7 +61,7 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
-  app.use(require('stylus').middleware(__dirname + '/public'));
+  //app.use(require('stylus').middleware(__dirname + '/public'));
   app.use(express.static(path.join(__dirname, 'public')));
 });
 

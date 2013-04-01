@@ -4,7 +4,7 @@ block content
   #sensors
     - each s in sensors
       div.sensor
-        div.title= s.name
-        div.data(id=s.name+'_data')
-        script(type='text/javascript')
-          addData(#{s.name});
+        div.title= s.title
+        div.data(id=s.name+'_chart')
+          script(type='text/javascript')
+                init("#{s.name}");

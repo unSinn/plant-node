@@ -3,7 +3,10 @@
  */
 
 exports.list = function(req, res){
-      SensorData.find({name: /^b-temp/ }, {}, {limit: 5 }, function(err, sensordata){
-          res.send(sensordata);
-      }).limit(10);
- };
+  //get parameter
+  var sensorname = url.parse(req.url ,true).query.sensorname;
+  db.findByName(sensorname, function(data){
+    res.send(data);
+  });    
+
+};

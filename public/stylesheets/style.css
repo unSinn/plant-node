@@ -19,16 +19,40 @@ h1 {
   text-align: left;
   margin-left: auto;
   margin-right: auto;
-  width: 640px;
+  width: 700px;
 }
 #sensors .sensor {
   margin: 20px;
   padding: 5px;
 }
 #sensors .sensor .title {
+  padding: 5px;
   font-weight: bold;
   background-color: #989898;
+  color: #FFFFFF;
 }
 #sensors .sensor .body {
   background-color: #898989;
+}
+
+.data {
+  height: 120px;
+  width: 600px;
+  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: grey;
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+
+path { 
+	stroke: steelblue;			/* the line colour for paths is steelblue */
+	stroke-width: 2;			/* the line width for paths is 2 pixels */
+	fill: none;					/* don't fill the area bounded by any path elements */
 }
