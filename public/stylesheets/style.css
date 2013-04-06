@@ -1,6 +1,6 @@
 body {
   font-family: "Helvetica Neue", "Lucida Grande", "Arial";
-  font-size: 13px;
+  font-size: 1em;
   text-align: center;
   text-stroke: 1px rgba(255,255,255,0.1);
   color: #555;
@@ -8,18 +8,34 @@ body {
 h1,
 h2 {
   margin: 0;
-  font-size: 22px;
+  font-size: 5em;
   color: #343434;
 }
 h1 {
   text-shadow: 1px 2px 2px #ddd;
-  font-size: 60px;
+  font-size: 5em;
 }
+
+#log{
+  width: 20%;
+  height: 100%;
+  float:right;
+  margin: 5px;
+  background-color: #898989;
+}
+
+div.currentValue{
+  font-size: 2em;
+  float:right;
+}
+
 #sensors {
   text-align: left;
   margin-left: auto;
   margin-right: auto;
-  width: 700px;
+  width: 50%;
+  background-color: #787878;
+  padding: 5px;
 }
 #sensors .sensor {
   margin: 20px;
@@ -52,7 +68,7 @@ h1 {
 }
 
 path { 
-	stroke: steelblue;			/* the line colour for paths is steelblue */
+	stroke: white;			/* the line colour for paths is steelblue */
 	stroke-width: 2;			/* the line width for paths is 2 pixels */
 	fill: none;					/* don't fill the area bounded by any path elements */
 }

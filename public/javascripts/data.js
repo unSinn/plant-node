@@ -99,7 +99,14 @@ function redraw(sensorname) {
       .attr("y", function(d) { return h - y(d.value) - .5; })
       .attr("height", function(d) { return y(d.value); });
 */
-
+function openSocketIo(){
+    var iosocket = io.connect();
+   
+    iosocket.on('io-data', function(d) {
+      console.info(d);
+        $("#"+d.name+"_currentValue").text(d.value +" " + d.unit);
+    });
+}
 
 
 function getDate(d) {
@@ -108,7 +115,7 @@ function getDate(d) {
 
 function init(sensorname)
 {
-  console.info(sensorname);
+  //console.info(sensorname);
     d3.json("http://localhost:3000/data?sensorname="+sensorname,function(error, data){
       data.sensorname = sensorname;
       bars(data);

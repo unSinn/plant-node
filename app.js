@@ -48,7 +48,6 @@ var serial = require("serialport");
 url = require('url');
 
 
-
 var app = express();
 
 
@@ -79,10 +78,20 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/data', data.list);
 
-http.createServer(app).listen(app.get('port'), function(){
+var server = http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
 
+
+//// Pushing Data with Socket.io
+var io = require('socket.io').listen(server);
+
+io.sockets.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});
 
 //// Reading JSON from Arduino
 
@@ -99,6 +108,9 @@ serialPort.on("open", function () {
         d = JSON.parse(data);
         d.timestamp = new Date();
         db.save(d);
+        
+        // Send new data via Socket.io
+        io.sockets.emit('io-data', d);
     }
     catch (ex)
     {
