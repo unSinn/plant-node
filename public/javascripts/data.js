@@ -4,8 +4,6 @@
 //http://www.recursion.org/d3-for-mere-mortals/
 //http://mbostock.github.com/d3/tutorial/bar-1.html
 
-
-
 function bars(data)
 {
 
@@ -28,35 +26,30 @@ function bars(data)
   var x = d3.time.scale()
     .range([0, width]);
 
-var y = d3.scale.linear()
-    .range([height, 0]);
+  var y = d3.scale.linear()
+      .range([height, 0]);
 
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .ticks(5)
-    .orient("bottom");
+  var xAxis = d3.svg.axis()
+      .scale(x)
+      .ticks(5)
+      .orient("bottom");
 
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .ticks(5)
-    .orient("left");
-    
-    
-var	line = d3.svg.line()
-  .interpolate("basis")						
-	.x(function(d) { return x(d.timestamp); })
-	.y(function(d) { return y(d.value); });	
+  var yAxis = d3.svg.axis()
+      .scale(y)
+      .ticks(5)
+      .orient("left");
+      
+      
+  var	line = d3.svg.line()
+    .interpolate("basis")						
+	  .x(function(d) { return x(d.timestamp); })
+	  .y(function(d) { return y(d.value); });	
 
-var area = d3.svg.area()
-    .x(function(d) { return x(d.timestamp); })
-    .y0(height)
-    .y1(function(d) { return y(d.value); });
-
-var svg = d3.select("#"+data.sensorname+"_chart").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  var svg = d3.select("#"+data.sensor.name+"_chart").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
   x.domain(d3.extent(data, function(d) { return d.timestamp; }));
   y.domain([
@@ -74,6 +67,7 @@ var svg = d3.select("#"+data.sensorname+"_chart").append("svg")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
 
+  //X-Achsen-Beschriftung
   svg.append("g")
       .attr("class", "y axis")
       .call(yAxis)
@@ -82,7 +76,7 @@ var svg = d3.select("#"+data.sensorname+"_chart").append("svg")
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("value");
+      .text(data.sensor.unit);
 
 }
 
@@ -115,9 +109,11 @@ function getDate(d) {
 
 function init(sensorname)
 {
-  //console.info(sensorname);
+    var sensor;
+    $.getJSON('http://localhost:3000/sensors',function(sensors){sensor = sensors.data[sensors.index[sensorname]];});
+    
     d3.json("http://localhost:3000/data?sensorname="+sensorname,function(error, data){
-      data.sensorname = sensorname;
+      data.sensor = sensor;
       bars(data);
     });
 

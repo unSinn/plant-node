@@ -68,7 +68,7 @@ div.currentValue{
 }
 
 path { 
-	stroke: white;			/* the line colour for paths is steelblue */
+	stroke: lightblue;			/* the line colour for paths is steelblue */
 	stroke-width: 2;			/* the line width for paths is 2 pixels */
 	fill: none;					/* don't fill the area bounded by any path elements */
 }

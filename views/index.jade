@@ -4,7 +4,7 @@ block content
   #log
     ul#loglist
   #sensors
-    - each s in sensors
+    - each s in sensors.data
       div.sensor
         div.title= s.title
           div.currentValue(id=s.name+'_currentValue')

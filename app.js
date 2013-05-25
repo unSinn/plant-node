@@ -1,38 +1,3 @@
-
-sensors = [
-       {
-           "name": "b-temp",
-           "title": "Barometer Temperature",
-           "unit": "deg C"
-       },
-       {
-           "name": "b-pres",
-           "title": "Barometer Pressure",
-           "unit": "Pa"
-       },
-       {
-           "name": "b-rala",
-           "title": "Barometer Ralated Atmosphere",
-           "unit": "atm"
-       },
-       {
-           "name": "b-alti",
-           "title": "Barometer Altitude",
-           "unit": "m"
-       },
-       {
-           "name": "l-light",
-           "title": "Light Sensor",
-           "unit": "lux"
-       },
-       {
-           "name": "m-moisture",
-           "title": "Moisture Sensor",
-           "unit": "lux"
-       }
-   ];
-
-
 /**
  * Module dependencies.
  */
@@ -42,6 +7,7 @@ var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
 var data = require('./routes/data');
+var sensors = require('./routes/sensors');
 var http = require('http');
 var path = require('path');
 var serial = require("serialport");
@@ -76,7 +42,9 @@ app.configure('production', function(){
 
 app.get('/', routes.index);
 app.get('/users', user.list);
-app.get('/data', data.list);
+app.get('/data', data.byname);
+app.get('/array', data.array);
+app.get('/sensors', sensors.list);
 
 var server = http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
